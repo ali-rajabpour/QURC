@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuranCoin MiniApp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f3e8;
+            color: #2c3e50;
+            margin-bottom: 150px; /* Increased space for footer */
+            position: relative;
+            min-height: 100vh;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 16px;
+            line-height: 1.4;
+            margin: 0 auto 20px auto;
+            max-width: 320px;
+            color: #3a96a3;
+            font-weight: 500;
+        }
+        .button {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 15px;
+            background-color: #3a96a3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2a7a85;
+        }
+        .track-button {
+            display: block;
+            width: 60%;
+            max-width: 200px;
+            margin: 10px auto;
+            padding: 12px;
+            background-color: #e67e22;
+            color: white !important;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-weight: normal;
+        }
+        .track-button:hover {
+            background-color: #d35400;
+            color: white !important;
+        }
+        .video-container {
+            margin: 20px auto;
+            max-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .points-display {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .points-earned {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #f39c12;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .countdown {
+            color: #c0392b;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .next-reward {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #8e44ad;
+        }
+        .error-message {
+            color: #e74c3c;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        #app-container {
+            display: none;
+        }
+        #loading-message {
+            margin: 20px;
+            font-size: 18px;
+        }
+        .footer {
+            position: static;
+            width: 100%;
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #f0e8da;
+            border-top: 1px solid #e0d6c4;
+            font-size: 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer a {
+            color: #3a96a3;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .tasks-status {
+            margin: 15px auto;
+            max-width: 280px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: left;
+        }
+        .task-item {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        .task-item:before {
+            content: "•";
+            color: #3a96a3;
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        .task-complete:before {
+            content: "✓";
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-message">Loading...</div>
+    
+    <div id="app-container">
+        <img src="logo_tg.png" alt="QuranCoin Logo" class="logo">
+        <div class="description">The First Islamic Token Based on Quran Taughts and Values, built on the Tron Blockchain (TRC20)</div>
+        <div class="points-display">Wallet Balance: <span id="points">0</span></div>
+        <div id="points-earned" class="points-earned"></div>
+        <div id="error-container" class="error-message"></div>
+
+        <div class="tasks-status" id="tasks-status">
+            <div class="task-item" id="task-instagram">Follow Instagram (Bonus +10)</div>
+            <div class="task-item" id="task-telegram">Join Telegram Channel (Bonus +10)</div>
+            <div class="task-item" id="task-twitter">Follow X (Bonus +10)</div>
+            <div class="task-item" id="task-video">Watch Introduction Video (Mandatory)</div>
+        </div>
+
+        <a href="https://www.instagram.com/qurancoin.io" target="_blank" class="button" id="instagramBtn">Follow Instagram</a>
+        <a href="https://t.me/qurancointoken" target="_blank" class="button" id="telegramBtn">Join Telegram Channel</a>
+        <a href="https://x.com/qurancoin_io" target="_blank" class="button" id="twitterBtn">Follow X</a>
+
+        <div class="video-container">
+            <video id="introVideo" width="100%" controls>
+                <source src="intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="next-reward" id="next-reward"></div>
+        <div class="countdown" id="countdown"></div>
+        
+        <div class="footer">
+            <a href="https://qurancoin.io/" target="_blank">Visit QuranCoin.io</a>
+            <a href="https://shasta.tronscan.org/#/token20/TRboWsiCRAiJUapLs5Vgs1xvHzbYah3SNf" target="_blank" class="track-button">Track Token</a>
+        </div>
+    </div>
+
+    <!-- Load Telegram Web App JS SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        // Wait for the Telegram WebApp to initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            // Wait for the SDK to initialize
+            setTimeout(function() {
+                initApp();
+            }, 1000);
+        });
+        
+        function initApp() {
+            const loadingMessage = document.getElementById('loading-message');
+            const appContainer = document.getElementById('app-container');
+            const errorContainer = document.getElementById('error-container');
+            
+            // Check if Telegram WebApp is properly initialized
+            if (!window.Telegram || !window.Telegram.WebApp) {
+                loadingMessage.textContent = 'Error: This app must be opened through Telegram.';
+                return;
+            }
+            
+            try {
+                // Try to initialize Telegram WebApp
+                window.Telegram.WebApp.ready();
+                
+                // Get initData from Telegram Web App
+                const initData = window.Telegram.WebApp.initData;
+                
+                if (!initData) {
+                    loadingMessage.textContent = 'Error: Missing Telegram authentication data.';
+                    return;
+                }
+                
+                // Show app container
+                loadingMessage.style.display = 'none';
+                appContainer.style.display = 'block';
+                
+                // Start the app
+                startApp(initData);
+                
+            } catch (error) {
+                console.error('WebApp initialization error:', error);
+                loadingMessage.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // Start the main app logic
+        function startApp(initData) {
+            // Add initData to all fetch requests
+            async function makeRequest(url, options = {}) {
+                const headers = {
+                    ...options.headers,
+                    'Content-Type': 'application/json',
+                    'X-Telegram-Init-Data': initData
+                };
+                
+                try {
+                    const response = await fetch(url, {
+                        ...options,
+                        headers
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Request failed');
+                    }
+                    
+                    return response;
+                } catch (error) {
+                    console.error(`Request error for ${url}:`, error);
+                    throw error;
+                }
+            }
+
+            // Handle external link clicks
+            function handleSocialLinkClick(platform) {
+                try {
+                    // Report the click to the server
+                    makeRequest(`/verify/${platform}`, {
+                        method: 'POST'
+                    })
+                    .then(() => calculatePoints())
+                    .catch(error => {
+                        console.error(`${platform} verification error:`, error);
+                        document.getElementById('error-container').textContent = `${platform} verification error: ${error.message}`;
+                    });
+                } catch (error) {
+                    console.error(`${platform} click handling error:`, error);
+                }
+                
+                // Continue with the link navigation (handled by the browser)
+                return true;
+            }
+
+            // Login user
+            async function loginUser() {
+                try {
+                    await makeRequest('/login', {
+                        method: 'POST'
+                    });
+                    return true;
+                } catch (error) {
+                    console.error('Login error:', error);
+                    document.getElementById('error-container').textContent = `Authentication error: ${error.message}`;
+                    return false;
+                }
+            }
+
+            // Initialize the app
+            async function initializeApp() {
+                try {
+                    // First login
+                    const loggedIn = await loginUser();
+                    if (!loggedIn) return;
+                    
+                    // Update points and status
+                    await updateStatus();
+                } catch (error) {
+                    console.error('Initialization error:', error);
+                    document.getElementById('error-container').textContent = `Init error: ${error.message}`;
+                }
+            }
+
+            // Show points earned animation
+            function showPointsEarned(points) {
+                if (points <= 0) return;
+                
+                const pointsEarnedEl = document.getElementById('points-earned');
+                pointsEarnedEl.textContent = `+${points} points earned!`;
+                pointsEarnedEl.style.opacity = 1;
+                
+                setTimeout(() => {
+                    pointsEarnedEl.style.opacity = 0;
+                }, 3000);
+            }
+
+            // Update task status
+            function updateTaskStatus(data) {
+                // Update task check marks
+                document.getElementById('task-instagram').className = 
+                    data.following_instagram ? 'task-item task-complete' : 'task-item';
+                document.getElementById('task-telegram').className = 
+                    data.following_telegram ? 'task-item task-complete' : 'task-item';
+                document.getElementById('task-twitter').className = 
+                    data.following_twitter ? 'task-item task-complete' : 'task-item';
+                document.getElementById('task-video').className = 
+                    data.watched_video ? 'task-item task-complete' : 'task-item';
+                    
+                // Log the video watched status to help with debugging
+                console.log('Video watched status:', data.watched_video);
+            }
+
+            // Update points
+            async function updatePoints() {
+                try {
+                    const response = await makeRequest('/status');
+                    const data = await response.json();
+                    
+                    // Update points display
+                    document.getElementById('points').textContent = data.points;
+                    
+                    // Update task status
+                    updateTaskStatus(data);
+                    
+                    // Update next reward time
+                    updateNextRewardTime(data.next_points_time);
+                    
+                    return data;
+                } catch (error) {
+                    console.error('Update points error:', error);
+                    return null;
+                }
+            }
+
+            // Calculate points
+            async function calculatePoints() {
+                try {
+                    const response = await makeRequest('/calculate-points', {
+                        method: 'POST'
+                    });
+                    const data = await response.json();
+                    
+                    console.log('Points calculation response:', data);
+                    
+                    // Update points display
+                    document.getElementById('points').textContent = data.total_points;
+                    
+                    // Show points earned animation if applicable
+                    showPointsEarned(data.points_earned);
+                    
+                    // Update next reward time
+                    updateNextRewardTime(data.next_points_time);
+                    
+                    // Request full status update to refresh task status
+                    await updateStatus();
+                    
+                    return data;
+                } catch (error) {
+                    console.error('Points calculation error:', error);
+                    
+                    // If the error is "user not found", try to login the user first and then try again
+                    if (error.message === 'User not found') {
+                        console.log('User not found, attempting to login first...');
+                        try {
+                            const loggedIn = await loginUser();
+                            if (loggedIn) {
+                                console.log('Login successful, trying to calculate points again...');
+                                return calculatePoints(); // Try again after login
+                            }
+                        } catch (loginError) {
+                            console.error('Login retry failed:', loginError);
+                        }
+                    }
+                    
+                    document.getElementById('error-container').textContent = `Points calculation error: ${error.message}`;
+                    // Set default values as fallback for new users
+                    document.getElementById('points').textContent = '0';
+                    return null;
+                }
+            }
+
+            // Update next reward time display
+            function updateNextRewardTime(nextPointsTime) {
+                const nextRewardEl = document.getElementById('next-reward');
+                const countdownEl = document.getElementById('countdown');
+                
+                // Always show the "Next airdrop" text
+                nextRewardEl.textContent = 'Next airdrop available in:';
+                
+                if (!nextPointsTime) {
+                    console.error('Missing next_points_time data');
+                    // Set a default hard-coded value for testing
+                    countdownEl.textContent = '04:00:00';
+                    return;
+                }
+                
+                console.log('Next points time data:', nextPointsTime);
+                
+                if (nextPointsTime.can_earn_now) {
+                    nextRewardEl.textContent = 'You can earn points now!';
+                    countdownEl.textContent = '';
+                } else {
+                    // Force 4 hours for timer if not working
+                    const forcedSeconds = nextPointsTime.seconds_remaining || 14400; // 4 hours in seconds
+                    startCountdown(forcedSeconds);
+                }
+            }
+
+            // Countdown timer
+            function startCountdown(seconds) {
+                const countdownElement = document.getElementById('countdown');
+                
+                if (!seconds || seconds <= 0) {
+                    console.error('Invalid seconds value for countdown:', seconds);
+                    // Default fallback to show something
+                    countdownElement.textContent = '04:00:00';
+                    return;
+                }
+                
+                // Clear any existing intervals to prevent duplicates
+                if (window.countdownInterval) {
+                    clearInterval(window.countdownInterval);
+                }
+                
+                // Ensure we start with a positive number
+                seconds = Math.max(0, seconds);
+                
+                // Update the countdown immediately
+                updateCountdownDisplay(seconds);
+                
+                // Set up the interval
+                window.countdownInterval = setInterval(() => {
+                    seconds--;
+                    
+                    if (seconds <= 0) {
+                        clearInterval(window.countdownInterval);
+                        countdownElement.textContent = 'You can now earn points again!';
+                        document.getElementById('next-reward').textContent = '';
+                        // Re-calculate points automatically
+                        calculatePoints();
+                    } else {
+                        updateCountdownDisplay(seconds);
+                    }
+                }, 1000);
+                
+                // Helper function to update the display
+                function updateCountdownDisplay(totalSeconds) {
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const secs = totalSeconds % 60;
+                    
+                    // Format with leading zeros
+                    const formattedHours = String(hours).padStart(2, '0');
+                    const formattedMinutes = String(minutes).padStart(2, '0');
+                    const formattedSeconds = String(secs).padStart(2, '0');
+                    
+                    countdownElement.textContent = 
+                        `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+                }
+            }
+
+            // Update status with countdown
+            async function updateStatus() {
+                try {
+                    const response = await makeRequest('/status');
+                    const data = await response.json();
+                    
+                    console.log('Status response:', data);
+                    
+                    // Update points display
+                    document.getElementById('points').textContent = data.points;
+                    
+                    // Update task status
+                    updateTaskStatus(data);
+                    
+                    // Update next reward time
+                    updateNextRewardTime(data.next_points_time);
+                    
+                    return data;
+                } catch (error) {
+                    console.error('Status update error:', error);
+                    document.getElementById('error-container').textContent = `Status update error: ${error.message}`;
+                    return null;
+                }
+            }
+
+            // Handle video tracking
+            function markVideoAsWatched() {
+                try {
+                    makeRequest('/watch-video', {
+                        method: 'POST'
+                    })
+                    .then(() => {
+                        console.log('Video marked as watched');
+                        calculatePoints();
+                    })
+                    .catch(error => {
+                        console.error('Video watching error:', error);
+                        document.getElementById('error-container').textContent = `Video tracking error: ${error.message}`;
+                    });
+                } catch (error) {
+                    console.error('Video watching function error:', error);
+                    document.getElementById('error-container').textContent = `Video tracking error: ${error.message}`;
+                }
+            }
+
+            // Video element
+            const videoElement = document.getElementById('introVideo');
+            
+            // Track when video starts playing
+            videoElement.addEventListener('play', function() {
+                console.log('Video started playing');
+                markVideoAsWatched();
+            });
+
+            // Initialize button event listeners for social media clicks
+            document.getElementById('instagramBtn').addEventListener('click', () => handleSocialLinkClick('instagram'));
+            document.getElementById('telegramBtn').addEventListener('click', () => handleSocialLinkClick('telegram'));
+            document.getElementById('twitterBtn').addEventListener('click', () => handleSocialLinkClick('twitter'));
+
+            // Start the app with automatic point calculation to check if points can be earned
+            initializeApp().then(() => {
+                // Initial points calculation
+                calculatePoints();
+                
+                // Set up periodic status refresh (every minute)
+                setInterval(updateStatus, 60000);
+            });
+        }
+    </script>
+</body>
+</html> 

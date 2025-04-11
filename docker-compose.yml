@@ -1,0 +1,27 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: QuranCoin_Wordpress
+    restart: always
+    ports:
+      - "443:443"  
+      - "80:80"
+    environment:
+      - WORDPRESS_DB_HOST=mysql-3dcf8886-qurc-wp-db.c.aivencloud.com:25350
+      - WORDPRESS_DB_USER=avnadmin
+      - WORDPRESS_DB_PASSWORD=AVNS_as3CoSsDghGcidoCnia
+      - WORDPRESS_DB_NAME=defaultdb
+      - WORDPRESS_TABLE_PREFIX=qurc_                  
+    volumes:
+      - ./wordpress_files:/var/www/html
+      - ./certificates/certs:/etc/ssl/certs:ro
+      - ./certificates/private:/etc/ssl/private:ro
+      - ./certificates/default-ssl.conf:/etc/apache2/sites-available/default-ssl.conf:ro
+    networks:
+      - wordpress_network
+
+networks:
+  wordpress_network:
+
+volumes:
+  wordpress_data: 
