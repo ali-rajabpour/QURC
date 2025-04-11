@@ -1,1 +1,44 @@
+# Project-specific ignores
 wordpress_files
+tg-miniapp/node_modules
+node_modules
+
+# Dependency directories
+/.pnp
+.pnp.js
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+/dist
+/build
+/.next
+/out
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Cache directories
+.cache/
+.temp/
+
+# Coverage directories
+/coverage
