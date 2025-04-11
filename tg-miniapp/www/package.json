@@ -1,0 +1,19 @@
+{
+  "name": "qurcoin-miniapp",
+  "version": "1.0.0",
+  "description": "QUR Coin Telegram MiniApp",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
