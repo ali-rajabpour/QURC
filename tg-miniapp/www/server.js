@@ -6,13 +6,13 @@ const app = express();
 const port = 8443;
 app.use(express.json());
 
-// Updated Database connection with credentials from db_credentials.md
+// Updated Database connection - credentials loaded from environment variables
 const pool = new Pool({
-  user: 'avnadmin',
-  host: 'tg-miniapp-tg-miniapp.c.aivencloud.com',
-  database: 'defaultdb',
-  password: 'AVNS_rImoQUP-lVSms49PwvV',
-  port: 12753,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME || 'defaultdb',
+  password: process.env.DB_PASSWORD,
+  port: parseInt(process.env.DB_PORT || '5432'),
   ssl: {
     rejectUnauthorized: false
   }
@@ -607,7 +607,8 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-app.listen(port, '163.5.94.144', () => {
-  console.log(`Server running at http://163.5.94.144:${port}`);
+const listenHost = process.env.SERVER_HOST || '0.0.0.0';
+app.listen(port, listenHost, () => {
+  console.log(`Server running at http://${listenHost}:${port}`);
   initDB();
 }); 

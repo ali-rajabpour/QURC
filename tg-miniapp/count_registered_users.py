@@ -1,13 +1,17 @@
-# pip install psycopg2-binary
+# pip install psycopg2-binary python-dotenv
+import os
 import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Database connection details
 conn = psycopg2.connect(
-    host="tg-miniapp-tg-miniapp.c.aivencloud.com",
-    port=12753,
-    dbname="defaultdb",
-    user="avnadmin",
-    password="AVNS_rImoQUP-lVSms49PwvV",
+    host=os.environ["DB_HOST"],
+    port=int(os.environ.get("DB_PORT", 5432)),
+    dbname=os.environ.get("DB_NAME", "defaultdb"),
+    user=os.environ["DB_USER"],
+    password=os.environ["DB_PASSWORD"],
     sslmode="require"
 )
 

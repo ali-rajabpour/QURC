@@ -28,7 +28,7 @@ A simple Telegram MiniApp for the QUR Coin project that allows users to earn poi
 - **HTML5** with **CSS3** styling
 - **JavaScript** for client-side logic
 - **Telegram Web App** SDK for integration
-- **Amiri** font for QUR aesthetic
+- **Amiri** font for aesthetic styling
 
 ## Project Structure 
 www/
@@ -70,7 +70,7 @@ www/
 
 4. **Access the App**
    - Open through Telegram Web App interface
-   - Access at: `http://163.5.94.144:8443`
+   - Access at: `http://<your_server_ip>:8443`
 
 ## Database Schema
 
