@@ -245,7 +245,12 @@ A template is provided at [`tg-miniapp/www/.env.example`](tg-miniapp/www/.env.ex
 - Review the hash verification logic in `tg-miniapp/www/server.js` before deploying to production — the bypass log warning is for development only.
 - The `/db-test` endpoint exposes database connection metadata; restrict or remove it in production environments.
 
-> ⚠️ **Important:** If any SSL private keys or credentials were previously committed to this repository's git history, consider them compromised. Revoke and re-issue any affected certificates and rotate all secrets immediately. Use tools such as [BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/) or `git filter-repo` to scrub sensitive data from history before making the repository public.
+> ⚠️ **IMPORTANT — Do NOT make this repository public until the following steps are completed:**
+>
+> 1. **SSL private keys and personal data exist in the git commit history** (initial commits). These must be scrubbed before the repository goes public. Use [BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/) or [`git filter-repo`](https://github.com/newren/git-filter-repo) to rewrite history and remove sensitive blobs.
+> 2. **Revoke and re-issue any SSL certificates** whose private keys were committed to this repository.
+> 3. **Rotate all secrets** (database passwords, bot tokens) that were ever present in committed files.
+> 4. Force-push the cleaned history and ensure all collaborators re-clone the repository after the rewrite.
 
 ---
 

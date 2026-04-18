@@ -41,7 +41,7 @@ Thumbs.db
 .temp/
 
 # Coverage directories
-/coverage
+**/coverage
 
 # SSL Certificates and private keys (never commit real certificates)
 *.pem
