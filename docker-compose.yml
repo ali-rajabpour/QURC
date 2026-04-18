@@ -1,16 +1,16 @@
 services:
   wordpress:
     image: wordpress:latest
-    container_name: QUR Coin_Wordpress
+    container_name: QUR_Coin_Wordpress
     restart: always
     ports:
       - "443:443"  
       - "80:80"
     environment:
-      - WORDPRESS_DB_HOST=<HOST_REDACTED>:25350
-      - WORDPRESS_DB_USER=<USER_REDACTED>
-      - WORDPRESS_DB_PASSWORD=<REDACTED>
-      - WORDPRESS_DB_NAME=defaultdb
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME:-defaultdb}
       - WORDPRESS_TABLE_PREFIX=qurc_                  
     volumes:
       - ./wordpress_files:/var/www/html

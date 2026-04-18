@@ -1,17 +1,19 @@
 **Service URI**
-postgres://<USER_REDACTED>:<REDACTED>@<HOST_REDACTED>:12753/defaultdb?sslmode=require
+postgres://<DB_USER>:<DB_PASSWORD>@<DB_HOST>:<DB_PORT>/defaultdb?sslmode=require
 
 **Database name**
 defaultdb
 
 **Host**
-<HOST_REDACTED>
+`<your_aiven_db_host>`
 
 **Port**
-12753
+`<your_db_port>`
 
 **User**
-<USER_REDACTED>
+`<your_db_user>`
 
 **Password**
-<REDACTED>
+`<your_db_password>`
+
+> ⚠️ **Never commit real credentials to source control.** Use a `.env` file (see `.env.example`) and ensure it is listed in `.gitignore`.

@@ -69,7 +69,7 @@ function App() {
 
           {/* Slogan */}
           <p className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed">
-            The First QUR Token Based on QUR Taughts and Values, Built on the Tron Blockchain (TRC20)
+            The First QUR Token Based on QUR Values, Built on the Tron Blockchain (TRC20)
           </p>
 
           {/* Countdown Timer */}

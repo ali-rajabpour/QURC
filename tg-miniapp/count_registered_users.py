@@ -1,13 +1,17 @@
-# pip install psycopg2-binary
+# pip install psycopg2-binary python-dotenv
+import os
 import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Database connection details
 conn = psycopg2.connect(
-    host="<HOST_REDACTED>",
-    port=12753,
-    dbname="defaultdb",
-    user="<USER_REDACTED>",
-    password="<REDACTED>",
+    host=os.environ["DB_HOST"],
+    port=int(os.environ.get("DB_PORT", 5432)),
+    dbname=os.environ.get("DB_NAME", "defaultdb"),
+    user=os.environ["DB_USER"],
+    password=os.environ["DB_PASSWORD"],
     sslmode="require"
 )
 
