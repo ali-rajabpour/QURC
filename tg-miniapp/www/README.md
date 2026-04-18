@@ -6,7 +6,8 @@ A simple Telegram MiniApp for the QUR Coin project that allows users to earn poi
 
 - **Telegram Authentication**: Uses Telegram Web App authentication via Telegram ID
 - **Social Media Verification**:
-  - Follow Instagram page (qurcoin.io)  - Join Telegram channel (https://t.me/qurcointoken)
+  - Follow Instagram page (qurcoin.io)
+  - Join Telegram channel (https://t.me/qurcointoken)
   - Follow Twitter account (qurcoin_io)
 - **Video Watching**: Users must watch an introductory video (intro.mp4)
 - **Points System**:
