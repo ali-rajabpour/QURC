@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/911b76b6-7474-424a-a496-246da2ff8fae" 
+       alt="FileFlow"
+       width="60%" />
+</p>
+
+
 # QURC — QUR Coin Project
 
 > **QUR Coin (QURC)** is a community-driven TRC20 token built on the Tron blockchain. This repository contains the complete infrastructure stack powering the QUR Coin web presence: a countdown landing page, a Telegram MiniApp for community engagement, and a WordPress site with SSL configuration.
