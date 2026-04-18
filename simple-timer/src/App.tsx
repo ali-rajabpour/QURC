@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
-      {/* QUR Pattern Background Overlay */}
+      {/* Decorative Pattern Background Overlay */}
       <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=2000&auto=format&fit=crop')] bg-repeat"></div>
 
       <div className="relative z-10">
@@ -69,7 +69,7 @@ function App() {
 
           {/* Slogan */}
           <p className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed">
-            The First QUR Token Based on QUR Values, Built on the Tron Blockchain (TRC20)
+            A Community-Driven Token Built on the Tron Blockchain (TRC20)
           </p>
 
           {/* Countdown Timer */}
@@ -93,8 +93,8 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-amber-50'} p-6 rounded-lg`}>
               <Coins className="w-12 h-12 text-amber-500 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Shariah Compliant</h3>
-              <p className="text-sm opacity-80">Built on QUR principles and values</p>
+              <h3 className="text-xl font-semibold mb-2">Community Focused</h3>
+              <p className="text-sm opacity-80">Built with transparent community values</p>
             </div>
             <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-amber-50'} p-6 rounded-lg`}>
               <svg className="w-12 h-12 text-amber-500 mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -108,7 +108,7 @@ function App() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h3 className="text-xl font-semibold mb-2">Transparent</h3>
-              <p className="text-sm opacity-80">Full compliance with QUR finance</p>
+              <p className="text-sm opacity-80">Full on-chain transparency and auditability</p>
             </div>
           </div>
         </div>

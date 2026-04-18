@@ -1,6 +1,6 @@
 # QURC — QUR Coin Project
 
-> **QUR Coin (QURC)** is an QUR-values-inspired token built on the Tron blockchain (TRC20). This repository contains the full infrastructure stack used to run the QUR Coin web presence, including a countdown landing page, a Telegram MiniApp for community engagement, and a WordPress site with SSL configuration.
+> **QUR Coin (QURC)** is a community-driven TRC20 token built on the Tron blockchain. This repository contains the complete infrastructure stack powering the QUR Coin web presence: a countdown landing page, a Telegram MiniApp for community engagement, and a WordPress site with SSL configuration.
 
 ---
 
@@ -27,7 +27,7 @@
 | **Token Name** | QUR Coin                                |
 | **Ticker**     | QURC                                    |
 | **Blockchain** | Tron (TRC20)                            |
-| **Website**    | [qurcoin.io](https://qurcoin.io)   |
+| **Website**    | [qurcoin.io](https://qurcoin.io)        |
 
 The project stack consists of:
 
@@ -214,7 +214,7 @@ A template is provided at [`tg-miniapp/www/.env.example`](tg-miniapp/www/.env.ex
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/qurcoin-project/QURC.git
+   git clone https://github.com/ali-rajabpour/QURC.git
    cd QURC
    ```
 
@@ -240,12 +240,21 @@ A template is provided at [`tg-miniapp/www/.env.example`](tg-miniapp/www/.env.ex
 ## Security
 
 - **Never commit real credentials.** All secrets must be stored in `.env` files, which are listed in `.gitignore`.
-- SSL certificates (`certificates/private/`, `certificates/certs/`) are excluded from version control.
+- **Never commit SSL certificates or private keys.** Certificate files (`*.pem`, `*.key`, `*.crt`) are excluded from version control via `.gitignore`. Provide them out-of-band on your server.
 - The Telegram MiniApp validates `initData` using HMAC-SHA256 against the bot token. Ensure `BOT_TOKEN` is set and never exposed.
 - Review the hash verification logic in `tg-miniapp/www/server.js` before deploying to production — the bypass log warning is for development only.
+- The `/db-test` endpoint exposes database connection metadata; restrict or remove it in production environments.
+
+> ⚠️ **IMPORTANT — Do NOT make this repository public until the following steps are completed:**
+>
+> 1. **SSL private keys and personal data exist in the git commit history** (initial commits). These must be scrubbed before the repository goes public. Use [BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/) or [`git filter-repo`](https://github.com/newren/git-filter-repo) to rewrite history and remove sensitive blobs.
+> 2. **Revoke and re-issue any SSL certificates** whose private keys were committed to this repository.
+> 3. **Rotate all secrets** (database passwords, bot tokens) that were ever present in committed files.
+> 4. Force-push the cleaned history and ensure all collaborators re-clone the repository after the rewrite.
 
 ---
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
