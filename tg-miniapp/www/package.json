@@ -1,5 +1,5 @@
 {
-  "name": "qurcoin-miniapp",
+  "name": "qur-coin-miniapp",
   "version": "1.0.0",
   "description": "QUR Coin Telegram MiniApp",
   "main": "server.js",
