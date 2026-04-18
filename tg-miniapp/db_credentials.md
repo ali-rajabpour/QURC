@@ -1,17 +1,19 @@
 **Service URI**
-postgres://avnadmin:AVNS_rImoQUP-lVSms49PwvV@tg-miniapp-tg-miniapp.c.aivencloud.com:12753/defaultdb?sslmode=require
+postgres://<DB_USER>:<DB_PASSWORD>@<DB_HOST>:<DB_PORT>/defaultdb?sslmode=require
 
 **Database name**
 defaultdb
 
 **Host**
-tg-miniapp-tg-miniapp.c.aivencloud.com
+`<your_aiven_db_host>`
 
 **Port**
-12753
+`<your_db_port>`
 
 **User**
-avnadmin
+`<your_db_user>`
 
 **Password**
-AVNS_rImoQUP-lVSms49PwvV
+`<your_db_password>`
+
+> ⚠️ **Never commit real credentials to source control.** Use a `.env` file (see `.env.example`) and ensure it is listed in `.gitignore`.
