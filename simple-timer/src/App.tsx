@@ -59,17 +59,17 @@ function App() {
         <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
           {/* Logo */}
           <div className="mb-8">
-            <img src="/logo.png" alt="QuranCoin Logo" className="w-32 h-32 md:w-40 md:h-40" />
+            <img src="/logo.png" alt="QUR Coin Logo" className="w-32 h-32 md:w-40 md:h-40" />
           </div>
 
           {/* Title */}
           <h1 className="text-4xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent">
-            QuranCoin
+            QUR Coin
           </h1>
 
           {/* Slogan */}
           <p className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed">
-            The First Islamic Token Based on Quran Taughts and Values, Built on the Tron Blockchain (TRC20)
+            The First Islamic Token Based on Islamic Values, Built on the Tron Blockchain (TRC20)
           </p>
 
           {/* Countdown Timer */}

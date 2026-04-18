@@ -1,13 +1,12 @@
-# QuranCoin Telegram MiniApp
+# QUR Coin Telegram MiniApp
 
-A simple Telegram MiniApp for the QuranCoin project that allows users to earn points by following social media accounts and watching an introductory video.
+A simple Telegram MiniApp for the QUR Coin project that allows users to earn points by following social media accounts and watching an introductory video.
 
 ## Features
 
 - **Telegram Authentication**: Uses Telegram Web App authentication via Telegram ID
 - **Social Media Verification**:
-  - Follow Instagram page (qurancoin.io)
-  - Join Telegram channel (https://t.me/qurancointoken)
+  - Follow Instagram page (qurancoin.io)  - Join Telegram channel (https://t.me/qurancointoken)
   - Follow Twitter account (qurancoin_io)
 - **Video Watching**: Users must watch an introductory video (intro.mp4)
 - **Points System**:
@@ -28,7 +27,7 @@ A simple Telegram MiniApp for the QuranCoin project that allows users to earn po
 - **HTML5** with **CSS3** styling
 - **JavaScript** for client-side logic
 - **Telegram Web App** SDK for integration
-- **Amiri** font for Islamic aesthetic
+- **Amiri** font for aesthetic styling
 
 ## Project Structure 
 www/
@@ -70,7 +69,7 @@ www/
 
 4. **Access the App**
    - Open through Telegram Web App interface
-   - Access at: `http://163.5.94.144:8443`
+   - Access at: `http://<your_server_ip>:8443`
 
 ## Database Schema
 

@@ -15,7 +15,7 @@ apt-get install -y vsftpd
 
 ```bash
 useradd -m -d /home/qurc/wordpress_files -s /bin/bash qurc_ftp
-echo "qurc_ftp:D+FTXj^6atG#Q82g" | chpasswd
+echo "qurc_ftp:<your_secure_password>" | chpasswd
 ```
 
 ### 3. Set Permissions
@@ -61,7 +61,7 @@ pam_service_name=vsftpd
 pasv_enable=YES
 pasv_min_port=40000
 pasv_max_port=40100
-pasv_address=163.5.94.144
+pasv_address=<your_server_ip>
 
 # Security settings
 secure_chroot_dir=/var/run/vsftpd/empty
@@ -223,8 +223,8 @@ If experiencing permission issues:
 
 ## Connection Information
 
-- Server: 163.5.94.144
+- Server: `<your_server_ip>`
 - Port: 21
 - Username: qurc_ftp
-- Password: D+FTXj^6atG#Q82g
+- Password: `<your_secure_password>`
 - Home Directory: /home/qurc/wordpress_files
