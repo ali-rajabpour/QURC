@@ -214,7 +214,7 @@ A template is provided at [`tg-miniapp/www/.env.example`](tg-miniapp/www/.env.ex
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/ali-rajabpour/QURC.git
+   git clone https://github.com/qurcoin-project/QURC.git
    cd QURC
    ```
 
